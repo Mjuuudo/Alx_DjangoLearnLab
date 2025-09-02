@@ -1,1 +1,0 @@
-frist django project
