@@ -33,7 +33,7 @@ class registerView (View):
 class profilView ( View ) :
 
     def post (self, request) :
-        form = UserChangeForm(request.POST)
+        form = UserChangeForm(request.POST,  instance=request.user)
         if (form.is_valid()) :
             form.save()
             messages.success(request, 'Your account has been Modified!')
