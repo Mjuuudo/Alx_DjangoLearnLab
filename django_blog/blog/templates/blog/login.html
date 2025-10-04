@@ -1,0 +1,17 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+{% for message in messages%}
+<p> Messages {{message}} </p>
+
+{% endfor %}
+
+<form method = "post">
+
+{% csrf_token %}
+{{ form.as_p }}
+<button> Login </button>
+</form>
+
+{% endblock %}
