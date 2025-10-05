@@ -23,12 +23,12 @@ class registerView (View):
             return redirect('login')
         else :
             form = CustomUserCreationForm()
-        return render (request, "blog/registration.html", {"form": form})
+        return render (request, "blog/register.html", {"form": form})
     
     # Handle The Get Request
     def get(self, request) :
         form = CustomUserCreationForm()
-        return render (request, "blog/registration.html", {"form": form})
+        return render (request, "blog/register.html", {"form": form})
 
 @method_decorator(login_required, name='dispatch')
 class profilView ( View ) :
