@@ -12,6 +12,13 @@ class CustomUserCreationForm( UserCreationForm ) :
         model = User
         fields = ("username", "email", "password1", "password2")
 
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
 # class CommentForm (forms.ModelForm) :
 #     class Meta :
 #         model = Comment

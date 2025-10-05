@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from .forms import *
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 
@@ -29,11 +30,11 @@ class registerView (View):
         form = CustomUserCreationForm()
         return render (request, "blog/registration.html", {"form": form})
 
-@login_required
+@method_decorator(login_required, name='dispatch')
 class profilView ( View ) :
 
     def post (self, request) :
-        form = UserChangeForm(request.POST,  instance=request.user)
+        form = UserUpdateForm(request.POST,  instance=request.user)
         if (form.is_valid()) :
             form.save()
             messages.success(request, 'Your account has been Modified!')
@@ -44,13 +45,13 @@ class profilView ( View ) :
 
 
     def get (self, request) :
-        form = UserChangeForm(instance=request.user)
+        form = UserUpdateForm(instance=request.user)
         return render(request, 'blog/profile.html', {'form': form})
     
-
+@login_required
 def logoutView(request) :
     logout(request)
-    return redirect('login')
+    return redirect('register')
 
 
 
